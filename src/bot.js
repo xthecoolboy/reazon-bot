@@ -1,19 +1,21 @@
 
-/* DEPENDENCIES */
+//! DEPENDENCIES
 const Discord = require("discord.js"),
 client = new Discord.Client(),
 
 Enmap = require("enmap"),
-db = new Enmap({name : "db"});
+db = new Enmap({name : "db"}),
 
 fs = require("fs"),
 
 chalk = require("chalk"),
 
+moment = require("moment"),
+
 config = require("../config");
 client.config = config;
 
-/* LOAD COMMANDS */
+//! LOAD COMMANDS
 function loadCommands(){
 
     client.commands = [];
@@ -37,14 +39,14 @@ function loadCommands(){
     });
 }
 
-/* LOGIN */
+//! LOGIN
 client.login(config.token);
 
 client.on("ready", () => {
 
     console.clear();
     loadCommands();
-    loadDb(db)
+    loadDb(db);
 
     wait(1500).then(() => {
         console.clear();
@@ -57,13 +59,10 @@ client.on("ready", () => {
         console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guilds ]`));
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
-        wait(2000).then(() => {
-            db.deleteAll()
-        })
     })
 })
 
-/* ENMAP  */
+//! ENMAP
 
 function loadDb(name){
     name.defer.then(() => {
@@ -75,7 +74,21 @@ db.changed(() => {
     loadDb(db);
 })
 
-/* OTHERS */
+//! ERRORS
+process.on("unhandledRejection", (err) => {
+    
+    var today = moment().format("L").split("/").join(":")
+    var toWrite = `${moment().format("L")} :: ${moment().format("LT")} -> ${err}\n`
+
+    if(!fs.existsSync(`${__dirname}/../Errors`)){
+        fs.mkdirSync(`${__dirname}/../Errors`);
+    }
+
+    fs.appendFileSync(`${__dirname}/../Errors/${today}.log`, toWrite);
+    console.log(`${moment().format("LT")} | New Error | Content --> /Errors/${today}.log`);
+});
+
+//! OTHERS
 const wait = require("util").promisify(setTimeout);
 
 const ascii = `
