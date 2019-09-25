@@ -4,11 +4,14 @@ const Discord = require("discord.js"),
 client = new Discord.Client(),
 
 Enmap = require("enmap"),
-//enmap = new Enmap({name : "test"});
+db = new Enmap({name : "db"});
 
 fs = require("fs"),
 
+chalk = require("chalk"),
+
 config = require("../config");
+client.config = config;
 
 /* LOAD COMMANDS */
 function loadCommands(){
@@ -33,3 +36,55 @@ function loadCommands(){
         });
     });
 }
+
+/* LOGIN */
+client.login(config.token);
+
+client.on("ready", () => {
+
+    console.clear();
+    loadCommands();
+    loadDb(db)
+
+    wait(1500).then(() => {
+        console.clear();
+        console.log(chalk.red(ascii + "\n"));
+        console.log(chalk.green(`Connected to Discord API`));
+        console.log("------------------------------------------------");
+        console.log(chalk.blue(`-> Discord Bot By Jocke and Kaly`));
+        console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
+        console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
+        console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guilds ]`));
+        console.log("------------------------------------------------");
+        console.log(chalk.green(`=> Client ready`));
+        wait(2000).then(() => {
+            db.deleteAll()
+        })
+    })
+})
+
+/* ENMAP  */
+
+function loadDb(name){
+    name.defer.then(() => {
+        console.log(`Database loaded : ${name.name}`)
+    })
+}
+
+db.changed(() => {
+    loadDb(db);
+})
+
+/* OTHERS */
+const wait = require("util").promisify(setTimeout);
+
+const ascii = `
+██████╗ ███████╗ █████╗ ███████╗ ██████╗ ███╗   ██╗
+██╔══██╗██╔════╝██╔══██╗╚══███╔╝██╔═══██╗████╗  ██║
+██████╔╝█████╗  ███████║  ███╔╝ ██║   ██║██╔██╗ ██║
+██╔══██╗██╔══╝  ██╔══██║ ███╔╝  ██║   ██║██║╚██╗██║
+██║  ██║███████╗██║  ██║███████╗╚██████╔╝██║ ╚████║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝                             
+  █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗   
+  ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
+`
