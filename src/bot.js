@@ -56,11 +56,46 @@ client.on("ready", () => {
         console.log(chalk.blue(`-> Discord Bot By Jocke and Kaly`));
         console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
         console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
-        console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guilds ]`));
+        console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guild(s) ]`));
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
+
+        var i = 0;
+
+        setInterval(() => { 
+
+            let toDisplay = config.presence[parseInt(i, 10)]
+            client.user.setActivity(toDisplay.name, {type: toDisplay.type,url : "https://twitch.tv/REAZON BOT"});
+            if(config.presence[parseInt(i+1, 10)]) i++
+            else i = 0;
+            
+        }, 5000);
     })
 })
+
+//! EVENTS
+
+client.on("message", async(msg) => {
+
+    if(
+        msg.author.bot ||
+        !msg.content.startsWith(config.prefix) ||
+        !msg.guild
+    ) return;
+
+    var args = msg.content.substring(config.prefix.length).split(" ");
+    var cmdName = args[0];
+
+    client.commands.forEach((command) => {
+        if(command.info.name === cmdName || command.info.alias.includes(cmdName)){
+            if(command.info.perm === "owner" && msg.author.id !== config.ownerID){
+                return
+            }else{
+                command.run(client, msg, args);
+            }
+        }
+    });
+});
 
 //! ENMAP
 
