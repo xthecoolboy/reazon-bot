@@ -46,7 +46,9 @@ client.login(config.token);
 client.on("ready", () => {
 
     console.clear();
-    loadCommands();
+    // Load commands in the cache
+    loadCommands(); 
+    // Load database in the cache
     loadDb(db);
 
     wait(1500).then(() => {
@@ -61,8 +63,8 @@ client.on("ready", () => {
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
+        // Activity System
         var i = 0;
-
         setInterval(() => { 
 
             let toDisplay = config.presence[parseInt(i, 10)]
@@ -83,8 +85,10 @@ client.on("message", async(msg) => {
         !msg.guild
     ) return;
 
+    // Getting the prefix of a guild
     var guildPrefix = db.get(msg.guild.id).prefix;
 
+    // If client mentionned
     if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
 
         var embed = new Discord.RichEmbed()
@@ -98,6 +102,7 @@ client.on("message", async(msg) => {
     var args = msg.content.substring(guildPrefix.length).split(" ");
     var cmdName = args[0];
 
+    // Multifile system
     client.commands.forEach((command) => {
         if(command.info.name === cmdName || command.info.alias.includes(cmdName)){
             if(command.info.perm === "owner" && msg.author.id !== config.ownerID){
@@ -109,6 +114,7 @@ client.on("message", async(msg) => {
     });
 });
 
+// Add a prefix when joining a guild
 client.on("guildCreate", (guild) => {
 
     if(!db.has(guild.id)){
@@ -116,6 +122,7 @@ client.on("guildCreate", (guild) => {
     }
 })
 
+// Remove the prefix when leaving a guild
 client.on("guildDelete", (guild) => {
     db.delete(guild.id);
 })
