@@ -1,36 +1,35 @@
 const Discord = require('discord.js');
 const moment = require('moment')
 
-exports.run = (client, message, args) => {
-    var reason = args.join(" ").slice();
-    if(!message.member.hasPermission("KICK_MEMBERS")) {
-        var error_permissions = new Discord.RichEmbed()
-            .setDescription("Tu n'as pas la permission de faire ça ! :x: ")
-            .setColor(config.embed.color)
-        message.channel.send(error_permissions)
+exports.run = (client, msg, args) => {
+
+    msg.delete();
+
+    if(!msg.member.permissions.has("KICK_MEMBERS")) return msg.channel.send(`This command require KICK_MEMBERS permission !`,  {code : true});
+
+    var member = msg.mentions.members.first();
+    var reason = args.slice(2).join(" ");
+
+    if (!member) return msg.channel.send(`You have to mention a member !`,  {code : true});
+    if(!reason){
+        reason = "No reason given"
     }
-    if (message.member.hasPermission("KICK_MEMBERS")) {
-        const member = message.mentions.members.first();
-        if (!member) {
-            var error_mention = new Discord.RichEmbed()
-            .setDescription("Mentionne un utilisateur ! :x: ")
-            .setColor(config.embed.color)
-        message.channel.send(error_mention)
-        }
-        member.ban().then(member => {
+
+    member.kick(reason).then((member) => {
         var kick_embed = new Discord.RichEmbed()
-            .setDescription("Nouveau KICK ! :wastebasket: ")
-            .addField("Membre mute", member)
-            .addField("Par :", message.author.username)
-            .addField("Le :", moment().format("LS"))
-            .addField("Raison :", reason)
-            .setColor(config.embed.color)
-       message.channel.send(kick_embed).catch(console.error);
+            .setTitle("Kick Command")
+            .addField("Member Kicked", `${member} ( ${member.user.tag} )`)
+            .addField("Kicked by :", msg.author.username)
+            .addField("When", moment().format("L"))
+            .addField("Reason :", reason)
+            .setColor(client.config.embed.color)
+       msg.channel.send(kick_embed).catch(console.error);
     })
-    }
-    message.delete();
+    
 }
 
 exports.info = {
-    name: "mute"
+    name: "kick",
+    alias : [],
+    perm : null
 }
