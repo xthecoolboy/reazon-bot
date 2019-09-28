@@ -102,6 +102,10 @@ client.on("message", async(msg) => {
     var args = msg.content.substring(guildPrefix.length).split(" ");
     var cmdName = args[0];
 
+    if(cmdName === "test"){
+        client.emit("guildMemberAdd", msg.member)
+    }
+
     // Multifile system
     client.commands.forEach((command) => {
         if(command.info.name === cmdName || command.info.alias.includes(cmdName)){
@@ -113,6 +117,22 @@ client.on("message", async(msg) => {
         }
     });
 });
+
+// Auto role when new member
+client.on("guildMemberAdd", (member) => {
+
+    if(db.has(member.guild.id)){
+        if(db.has(member.guild.id, "autorole")){
+            var role = member.guild.roles.get(db.get(member.guild.id).autorole)
+            if(role){
+                var compare = member.guild.me.highestRole.comparePositionTo(role);
+                if(compare > 0){
+                    member.addRole(role.id);
+                }
+            }
+        }
+    }
+})
 
 // Add a prefix when joining a guild
 client.on("guildCreate", (guild) => {
