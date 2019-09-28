@@ -14,6 +14,7 @@ moment = require("moment"),
 
 config = require("../config");
 client.config = config;
+client.db = db;
 
 //! LOAD COMMANDS
 function loadCommands(){
@@ -79,11 +80,13 @@ client.on("message", async(msg) => {
 
     if(
         msg.author.bot ||
-        !msg.content.startsWith(config.prefix) ||
         !msg.guild
     ) return;
 
-    var args = msg.content.substring(config.prefix.length).split(" ");
+    var guildPrefix = db.get(msg.guild.id).prefix;
+    if(!msg.content.startsWith(guildPrefix)) return;
+
+    var args = msg.content.substring(guildPrefix.length).split(" ");
     var cmdName = args[0];
 
     client.commands.forEach((command) => {
@@ -96,6 +99,17 @@ client.on("message", async(msg) => {
         }
     });
 });
+
+client.on("guildCreate", (guild) => {
+
+    if(!db.has(guild.id)){
+        db.set(guild.id, config.prefix, "prefix");
+    }
+})
+
+client.on("guildDelete", (guild) => {
+    db.delete(guild.id);
+})
 
 //! ENMAP
 

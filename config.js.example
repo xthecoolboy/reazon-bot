@@ -1,0 +1,18 @@
+module.exports = {
+
+    token : "",
+    prefix : "",
+    ownerID : "",
+
+    embed : {
+        color : "",
+        footer : ""
+    },
+
+    presence : [
+        {
+            name : "",
+            type : ""
+        }
+    ]
+}
