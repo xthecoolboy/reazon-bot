@@ -84,6 +84,15 @@ client.on("message", async(msg) => {
     ) return;
 
     var guildPrefix = db.get(msg.guild.id).prefix;
+
+    if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
+
+        var embed = new Discord.RichEmbed()
+            .setColor(config.embed.color)
+            .setDescription(`Hey ! Mon prefix sur ce serveur est [ ${guildPrefix} ]\nTu peux faire ${guildPrefix}help pour voir la liste de mes commandes !`)
+        msg.channel.send(embed);
+    }
+
     if(!msg.content.startsWith(guildPrefix)) return;
 
     var args = msg.content.substring(guildPrefix.length).split(" ");
