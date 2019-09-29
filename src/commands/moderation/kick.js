@@ -32,5 +32,10 @@ exports.info = {
     name: "kick",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Kick a member",
+        usage : "[prefix]kick <@mention> [reason]",
+        ex : "[prefix]kick @JockeRider199 Bad Words"
+    }
 }

@@ -23,5 +23,10 @@ exports.info = {
     name : "clear",
     alias : ["purge"],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Purge x messages of the channel",
+        usage : "[prefix]clear <number>",
+        ex : "[prefix]clear 5"
+    }
 }

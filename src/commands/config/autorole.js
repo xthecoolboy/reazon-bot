@@ -43,5 +43,10 @@ exports.info = {
     name : "autorole",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Change the role given when new members join",
+        usage : "[prefix]autorole <@role> | stop",
+        ex : "[prefix]autorole @Devs | stop"
+    }
 }

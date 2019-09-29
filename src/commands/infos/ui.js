@@ -119,5 +119,10 @@ exports.info = {
     name : "userinfo",
     alias : ["ui"],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Show informations about mentionned member",
+        usage : "[prefix]userinfo <@mention>",
+        ex : "[prefix]userinfo @JockeRider199"
+    }
 }

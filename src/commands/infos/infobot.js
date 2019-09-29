@@ -23,5 +23,10 @@ exports.info = {
     name : "botinfo",
     alias : ["bot-info", "info-bot", "infobot"],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Give infos about me :D",
+        usage : "[prefix]botinfo",
+        ex : "/"
+    }
 }

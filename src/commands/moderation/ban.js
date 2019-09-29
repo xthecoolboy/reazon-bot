@@ -32,5 +32,10 @@ exports.info = {
     name: "ban",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Ban a member",
+        usage : "[prefix]ban <@mention> [reason]",
+        ex : "[prefix]ban @JockeRider199 Bad words"
+    }
 }

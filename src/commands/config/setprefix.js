@@ -30,5 +30,10 @@ exports.info = {
     name : "setprefix",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Change the bot's prefix for this server",
+        usage : "[prefix]setprefix <prefix>",
+        ex : "[prefix]setprefix r!"
+    }
 }

@@ -20,5 +20,10 @@ exports.info = {
     name : "ping",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Show the ping of the bot",
+        usage : "[prefix]ping",
+        ex : "/"
+    }
 }
