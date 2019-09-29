@@ -29,5 +29,6 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "setprefix",
     alias : [],
-    owner : null
+    perm : null,
+    dir : __dirname
 }

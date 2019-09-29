@@ -40,5 +40,6 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "autorole",
     alias : [],
-    owner : null
+    perm : null,
+    dir : __dirname
 }
