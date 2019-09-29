@@ -18,7 +18,7 @@ exports.run = async(client, msg, args) => {
     var moderationCmd = [];
 
     client.commands.forEach((cmd) => {
-        var dir = cmd.info.dir.split("/").pop();
+        var dir = cmd.info.dir.split("\\").pop();
         switch(dir){
             case "config":
                 configCmds.push(`\`${cmd.info.name}\``);

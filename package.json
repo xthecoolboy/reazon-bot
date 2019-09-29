@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/jockaly/discord-bot#readme",
   "dependencies": {
+    "better-sqlite-pool": "^0.2.2",
     "chalk": "^2.4.2",
     "discord.js": "11.5.1",
     "enmap": "^5.1.2",
-    "moment": "^2.24.0"
+    "i": "^0.3.6",
+    "moment": "^2.24.0",
+    "npm": "^6.11.3"
   }
 }

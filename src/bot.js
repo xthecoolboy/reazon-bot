@@ -12,6 +12,8 @@ chalk = require("chalk"),
 
 moment = require("moment"),
 
+path = require("path"),
+
 config = require("../config");
 client.config = config;
 client.db = db;
@@ -161,16 +163,18 @@ db.changed(() => {
 
 //! ERRORS
 process.on("unhandledRejection", (err) => {
-    
-    var today = moment().format("L").split("/").join(":")
+
+    console.error(err);
+
+    /*var today = moment().format("L").split("/").join(":")
     var toWrite = `${moment().format("L")} :: ${moment().format("LT")} -> ${err}\n`
 
-    if(!fs.existsSync(`${__dirname}/../Errors`)){
-        fs.mkdirSync(`${__dirname}/../Errors`);
+    if(!fs.existsSync(`${__dirname}${path.sep}..${path.sep}Errors`)){
+        fs.mkdirSync(`${__dirname}${path.sep}..${path.sep}Errors`);
     }
 
-    fs.appendFileSync(`${__dirname}/../Errors/${today}.log`, toWrite);
-    console.log(`${moment().format("LT")} | New Error | Content --> /Errors/${today}.log`);
+    fs.appendFileSync(`${__dirname}${path.sep}..${path.sep}Errors${path.sep}${today}.log`, toWrite);
+    console.log(`${moment().format("LT")} | New Error | Content --> /Errors/${today}.log`);*/
 });
 
 //! OTHERS
