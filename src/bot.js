@@ -109,7 +109,7 @@ client.on("message", async(msg) => {
     // Multifile system
     client.commands.forEach((command) => {
         if(command.info.name === cmdName || command.info.alias.includes(cmdName)){
-            if(command.info.perm === "owner" && msg.author.id !== config.ownerID){
+            if(command.info.perm === "owner" && !config.ownerID.includes(msg.author.id)){
                 return
             }else{
                 command.run(client, msg, args);
