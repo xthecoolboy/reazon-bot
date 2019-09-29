@@ -17,7 +17,7 @@ exports.run = async (client, msg, args) => {
     db.set(msg.guild.id, newPrefix, "prefix");
 
     // Creating and sending discord embed
-    var embed = new Discord.RichEmbed()
+    var embed = new Discord.MessageEmbed()
         .setTitle("Prefix Changes")
         .setDescription(`Prefix Changed ! New value : [ ${newPrefix} ]`)
         .setColor(client.config.embed.color)

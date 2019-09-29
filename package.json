@@ -19,7 +19,8 @@
   "dependencies": {
     "better-sqlite-pool": "^0.2.2",
     "chalk": "^2.4.2",
-    "discord.js": "^11.5.1",
+    "discord-backup": "^1.1.2",
+    "discord.js": "github:discordjs/discord.js",
     "enmap": "^5.1.2",
     "moment": "^2.24.0",
     "os": "^0.1.1"

@@ -133,9 +133,9 @@ client.on("guildMemberAdd", (member) => {
         if(db.has(member.guild.id, "autorole")){
             var role = member.guild.roles.get(db.get(member.guild.id).autorole)
             if(role){
-                var compare = member.guild.me.highestRole.comparePositionTo(role);
+                var compare = member.guild.me.roles.highest.comparePositionTo(role);
                 if(compare > 0){
-                    member.addRole(role.id);
+                    member.roles.add(role.id)
                 }
             }
         }

@@ -15,9 +15,9 @@ exports.run = (client, msg, args) => {
         reason = "No reason given"
     }
 
-    member.ban(reason).then((member) => {
+    member.ban({reason : reason}).then((member) => {
 
-        var ban_embed = new Discord.RichEmbed()
+        var ban_embed = new Discord.MessageEmbed()
             .setTitle("Ban Command")
             .addField("Banned member", `${member} ( ${member.user.tag} )`)
             .addField("By", msg.author.username)

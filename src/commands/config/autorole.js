@@ -11,9 +11,10 @@ exports.run = async (client, msg, args) => {
 
     if(args[1] === "stop"){
         db.delete(msg.guild.id, "autorole");
-        var embed = new Discord.RichEmbed()
+        var embed = new Discord.MessageEmbed()
             .setTitle(`AutoRole Updated !`)
             .setDescription("I'll stop adding role to new members !")
+            .setColor(client.config.embed.color)
         return msg.channel.send(embed);
     }
 
@@ -27,10 +28,11 @@ exports.run = async (client, msg, args) => {
 
     db.set(msg.guild.id, role.id, "autorole");
 
-    var compare = msg.guild.me.highestRole.comparePositionTo(role);
-    var embed = new Discord.RichEmbed()
+    var compare = msg.guild.me.roles.highest.comparePositionTo(role);
+    var embed = new Discord.MessageEmbed()
         .setTitle(`AutoRole Updated !`)
-        .setDescription(`New value : ${role}`);
+        .setDescription(`New value : ${role}`)
+        .setColor(client.config.embed.color)
         if(compare <= 0){
             embed.addField(`:warning: Warning`, `My role is under the role to give, please move up my role !`); 
         }

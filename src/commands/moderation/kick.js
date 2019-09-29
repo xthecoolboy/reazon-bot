@@ -16,7 +16,7 @@ exports.run = (client, msg, args) => {
     }
 
     member.kick(reason).then((member) => {
-        var kick_embed = new Discord.RichEmbed()
+        var kick_embed = new Discord.MessageEmbed()
             .setTitle("Kick Command")
             .addField("Member Kicked", `${member} ( ${member.user.tag} )`)
             .addField("Kicked by :", msg.author.username)

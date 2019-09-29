@@ -12,9 +12,9 @@ exports.run = async(client, msg, args) => {
     if(isNaN(nbre)) return msg.channel.send(`Parameter number is not a number !`, {code : true});
     if(nbre > 100) return msg.channel.Send(`I can't delete more than 100 messages`, {code : true});
 
-    msg.channel.bulkDelete(nbre).then((deleted) => {
+    msg.channel.bulkDelete(nbre, true).then((deleted) => {
         msg.channel.send(`I have deleted ${deleted.size} messages`, {code: true}).then((s) => {
-            s.delete(3000);
+            s.delete({timeout : 3000});
         });
     });
 }
