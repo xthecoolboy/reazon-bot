@@ -12,6 +12,8 @@ chalk = require("chalk"),
 
 moment = require("moment"),
 
+path = require("path"),
+
 config = require("../config");
 client.config = config;
 client.db = db;
@@ -46,7 +48,9 @@ client.login(config.token);
 client.on("ready", () => {
 
     console.clear();
-    loadCommands();
+    // Load commands in the cache
+    loadCommands(); 
+    // Load database in the cache
     loadDb(db);
 
     wait(1500).then(() => {
@@ -61,8 +65,14 @@ client.on("ready", () => {
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
-        var i = 0;
+        client.guilds.forEach((guild) => {
+            if(!db.has(guild.id)){
+                addPrefix(guild.id)
+            }
+        })
 
+        // Activity System
+        var i = 0;
         setInterval(() => { 
 
             let toDisplay = config.presence[parseInt(i, 10)]
@@ -83,15 +93,31 @@ client.on("message", async(msg) => {
         !msg.guild
     ) return;
 
+    // Getting the prefix of a guild
     var guildPrefix = db.get(msg.guild.id).prefix;
+
+    // If client mentionned
+    if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
+
+        var embed = new Discord.RichEmbed()
+            .setColor(config.embed.color)
+            .setDescription(`Hey ! Mon prefix sur ce serveur est [ ${guildPrefix} ]\nTu peux faire ${guildPrefix}help pour voir la liste de mes commandes !`)
+        msg.channel.send(embed);
+    }
+
     if(!msg.content.startsWith(guildPrefix)) return;
 
     var args = msg.content.substring(guildPrefix.length).split(" ");
     var cmdName = args[0];
 
+    if(cmdName === "test"){
+        client.emit("guildMemberAdd", msg.member)
+    }
+
+    // Multifile system
     client.commands.forEach((command) => {
         if(command.info.name === cmdName || command.info.alias.includes(cmdName)){
-            if(command.info.perm === "owner" && msg.author.id !== config.ownerID){
+            if(command.info.perm === "owner" && !config.ownerID.includes(msg.author.id)){
                 return
             }else{
                 command.run(client, msg, args);
@@ -100,6 +126,23 @@ client.on("message", async(msg) => {
     });
 });
 
+// Auto role when new member
+client.on("guildMemberAdd", (member) => {
+
+    if(db.has(member.guild.id)){
+        if(db.has(member.guild.id, "autorole")){
+            var role = member.guild.roles.get(db.get(member.guild.id).autorole)
+            if(role){
+                var compare = member.guild.me.highestRole.comparePositionTo(role);
+                if(compare > 0){
+                    member.addRole(role.id);
+                }
+            }
+        }
+    }
+})
+
+// Add a prefix when joining a guild
 client.on("guildCreate", (guild) => {
 
     if(!db.has(guild.id)){
@@ -107,6 +150,7 @@ client.on("guildCreate", (guild) => {
     }
 })
 
+// Remove the prefix when leaving a guild
 client.on("guildDelete", (guild) => {
     db.delete(guild.id);
 })
@@ -125,16 +169,18 @@ db.changed(() => {
 
 //! ERRORS
 process.on("unhandledRejection", (err) => {
-    
-    var today = moment().format("L").split("/").join(":")
+
+    console.error(err);
+
+    /*var today = moment().format("L").split("/").join(":")
     var toWrite = `${moment().format("L")} :: ${moment().format("LT")} -> ${err}\n`
 
-    if(!fs.existsSync(`${__dirname}/../Errors`)){
-        fs.mkdirSync(`${__dirname}/../Errors`);
+    if(!fs.existsSync(`${__dirname}${path.sep}..${path.sep}Errors`)){
+        fs.mkdirSync(`${__dirname}${path.sep}..${path.sep}Errors`);
     }
 
-    fs.appendFileSync(`${__dirname}/../Errors/${today}.log`, toWrite);
-    console.log(`${moment().format("LT")} | New Error | Content --> /Errors/${today}.log`);
+    fs.appendFileSync(`${__dirname}${path.sep}..${path.sep}Errors${path.sep}${today}.log`, toWrite);
+    console.log(`${moment().format("LT")} | New Error | Content --> /Errors/${today}.log`);*/
 });
 
 //! OTHERS
@@ -150,3 +196,7 @@ const ascii = `
   █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗   
   ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 `
+
+function addPrefix(id){
+    db.set(id, config.prefix, "prefix");
+}

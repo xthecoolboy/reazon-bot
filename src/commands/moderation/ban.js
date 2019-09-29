@@ -31,5 +31,6 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name: "ban",
     alias : [],
-    perm : null
+    perm : null,
+    dir : __dirname
 }
