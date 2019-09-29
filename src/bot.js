@@ -65,6 +65,12 @@ client.on("ready", () => {
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
+        client.guilds.forEach((guild) => {
+            if(!db.has(guild.id)){
+                addPrefix(guild.id)
+            }
+        })
+
         // Activity System
         var i = 0;
         setInterval(() => { 
@@ -190,3 +196,7 @@ const ascii = `
   █████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗   
   ╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝
 `
+
+function addPrefix(id){
+    db.set(id, config.prefix, "prefix");
+}
