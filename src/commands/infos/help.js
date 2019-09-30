@@ -12,7 +12,6 @@ exports.run = async(client, msg, args) => {
                 args[1] === cmd.info.name ||
                 cmd.info.alias.includes(args[1])
             ){
-                console.log("Found")
                 var guildPrefix = client.db.get(msg.guild.id).prefix;
                 var embed = new Discord.MessageEmbed()
                     .setColor(client.config.embed.color)
