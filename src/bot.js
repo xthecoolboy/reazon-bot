@@ -65,6 +65,9 @@ client.on("ready", () => {
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
+        const backup = require("./functions/backup");
+        backup.setStorageFolder(`${__dirname}/../backups/`);
+
         client.guilds.forEach((guild) => {
             if(!db.has(guild.id)){
                 addPrefix(guild.id)
