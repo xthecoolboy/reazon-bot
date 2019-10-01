@@ -137,7 +137,7 @@ client.on("message", async(msg) => {
     // If client mentionned
     if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
 
-        var embed = new Discord.RichEmbed()
+        var embed = new Discord.MessageEmbed()
             .setColor(config.embed.color)
             .setDescription(`Hey ! Mon prefix sur ce serveur est [ ${guildPrefix} ]\nTu peux faire ${guildPrefix}help pour voir la liste de mes commandes !`)
         msg.channel.send(embed);
