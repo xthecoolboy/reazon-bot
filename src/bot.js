@@ -139,7 +139,7 @@ client.on("message", async(msg) => {
 
         var embed = new Discord.MessageEmbed()
             .setColor(config.embed.color)
-            .setDescription(`Hey ! Mon prefix sur ce serveur est [ ${guildPrefix} ]\nTu peux faire ${guildPrefix}help pour voir la liste de mes commandes !`)
+            .setDescription(`Hey ! My prefix on this guild is [ ${guildPrefix} ]\nYou can type ${guildPrefix}help to see my commands !`)
         msg.channel.send(embed);
     }
 
