@@ -43,6 +43,8 @@ exports.run = async(client, msg, args) => {
         var infosCmd = [];
         var moderationCmd = [];
         var backupCmds = [];
+        var ownerCmds = [];
+        var generalCmds = [];
 
         client.commands.forEach((cmd) => {
             var dir = cmd.info.dir.split("\\").pop();
@@ -58,6 +60,12 @@ exports.run = async(client, msg, args) => {
                     break;
                 case "backup":
                     backupCmds.push(`\`${cmd.info.name}\``);
+                    break;
+                case "general":
+                    generalCmds.push(`\`${cmd.info.name}\``);
+                    break;
+                case "owner":
+                    ownerCmds.push(`\`${cmd.info.name}\``);
                     break;
             }
         })
@@ -84,6 +92,8 @@ exports.run = async(client, msg, args) => {
             .addField(`Infos Commands`, infosCmd.join(", "))
             .addField(`Moderation Commands`, moderationCmd.join(", "))
             .addField(`Backup Commands`, backupCmds.join(", "))
+            .addField(`General Commands`, generalCmds.join(", "))
+            .addField("Owner Commands", ownerCmds.join(", "))
 
         function sendDM(){
             msg.channel.send(`Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))
