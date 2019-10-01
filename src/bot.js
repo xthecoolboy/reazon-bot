@@ -62,6 +62,7 @@ client.on("ready", () => {
         console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
         console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
         console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guild(s) ]`));
+        console.log(chalk.magenta(`-> Cmds Size :  [ ${client.commands.length} ]`));
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
@@ -86,6 +87,40 @@ client.on("ready", () => {
         }, 5000);
     })
 })
+
+client.reloadBot = function(){
+    loadCommands()
+    wait(1500).then(() => {
+        console.clear();
+        console.log(chalk.red(ascii + "\n"));
+        console.log(chalk.green(`Connected to Discord API`));
+        console.log("------------------------------------------------");
+        console.log(chalk.blue(`-> Discord Bot By Jocke and Kaly`));
+        console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
+        console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
+        console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guild(s) ]`));
+        console.log(chalk.magenta(`-> Cmds Size :  [ ${client.commands.length} ]`));
+        console.log("------------------------------------------------");
+        console.log(chalk.green(`=> Client ready`));
+
+        client.guilds.forEach((guild) => {
+            if(!db.has(guild.id)){
+                addPrefix(guild.id)
+            }
+        })
+
+        // Activity System
+        var i = 0;
+        setInterval(() => { 
+
+            let toDisplay = config.presence[parseInt(i, 10)]
+            client.user.setActivity(toDisplay.name, {type: toDisplay.type,url : "https://twitch.tv/REAZON BOT"});
+            if(config.presence[parseInt(i+1, 10)]) i++
+            else i = 0;
+            
+        }, 5000);
+    })
+}
 
 //! EVENTS
 
