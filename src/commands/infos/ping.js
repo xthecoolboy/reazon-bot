@@ -6,9 +6,9 @@ exports.run = async(client, msg, args) => {
 
     var newmsg = await msg.channel.send("Ping ?")
 
-    var embed = new Discord.RichEmbed()
+    var embed = new Discord.MessageEmbed()
     .setColor(client.config.embed.color)
-    .addField('Ping API : ', Math.floor(client.ping) + 'ms')
+    .addField('Ping API : ', Math.floor(client.ws.ping) + 'ms')
     .addField('Ping Bot : ', ` ${newmsg.createdTimestamp - msg.createdTimestamp}` + 'ms')
     .setFooter(client.config.embed.footer)
         
@@ -20,5 +20,10 @@ exports.info = {
     name : "ping",
     alias : [],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Show the ping of the bot",
+        usage : "[prefix]ping",
+        ex : "/"
+    }
 }

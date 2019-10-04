@@ -1,6 +1,6 @@
 {
   "name": "discord-bot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,11 +17,11 @@
   },
   "homepage": "https://github.com/jockaly/discord-bot#readme",
   "dependencies": {
+    "better-sqlite-pool": "^0.2.2",
     "chalk": "^2.4.2",
-    "discord.js": "^11.5.1",
+    "discord.js": "github:discordjs/discord.js",
     "enmap": "^5.1.2",
     "moment": "^2.24.0",
-    "cpu-stat": "^2.0.1",
     "os": "^0.1.1"
   }
 }

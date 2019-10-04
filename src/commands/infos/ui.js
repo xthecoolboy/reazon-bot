@@ -16,7 +16,7 @@ exports.run = (client, msg, args) => {
     member.roles.forEach(role => {
         roles.push("-> " + role.name + "\n");
     })
-    roles.shift()
+    roles.pop()
 
     // Catch des perms
     if(member.permissions.has("ADMINISTRATOR")){
@@ -86,10 +86,10 @@ exports.run = (client, msg, args) => {
     }
 
     // Embed
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
         .setColor(client.config.embed.color)
-        .setThumbnail(member.user.avatarURL)
-        .setAuthor("User Info", client.user.avatarURL)
+        .setThumbnail(member.user.avatarURL())
+        .setAuthor("User Info", client.user.avatarURL())
         .addField("Username et ID", code + member.user.tag + "\n" + member.user.id + block, true)
         .addField("Mention", member, true)
         if(member.nickname){
@@ -119,5 +119,10 @@ exports.info = {
     name : "userinfo",
     alias : ["ui"],
     perm : null,
-    dir : __dirname
+    dir : __dirname,
+    help : {
+        desc : "Show informations about mentionned member",
+        usage : "[prefix]userinfo <@mention>",
+        ex : "[prefix]userinfo @JockeRider199"
+    }
 }
