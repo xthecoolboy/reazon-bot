@@ -9,6 +9,12 @@ module.exports = {
         footer : ""
     },
 
+    devs : {
+        max : "",
+        nivys : "",
+        jocke : ""
+    },
+
     presence : [
         {
             name : "",
