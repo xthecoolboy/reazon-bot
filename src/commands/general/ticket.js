@@ -21,21 +21,21 @@ exports.run = async(client, msg, args) => {
     function dropError(reason){
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setTitle("Ticket Configuration Error !")
+            .setTitle("🎫❌ Ticket Configuration Error !")
             .setDescription(`Ticket System configuration is not valid ! \n**Not valid parameter : ${reason}**`)
         msg.channel.send(errorEmbed);
     }
 
     var openOrClose = args[1];
 
-    if(!openOrClose) return msg.channel.send("You have to tell if you want to close or open a ticket ! (Support can also add someone to the the ticket with \"add\")", {code : true});
+    if(!openOrClose) return msg.channel.send("🎫⚠️You have to tell if you want to close or open a ticket ! (Support can also add someone to the the ticket with \"add\")", {code : true});
 
     switch(openOrClose){
 
         case "create":
         case "open":
             if(msg.guild.channels.array().find((e) => e.name.startsWith(`ticket-${msg.author.discriminator}`))){
-                return msg.channel.send(`You have already opened a ticket !`, {code : true});
+                return msg.channel.send(`🎫❌You have already opened a ticket !`, {code : true});
             }else{
                 msg.guild.channels.create(`ticket-${msg.author.discriminator}`, {
                     type : "text",
@@ -57,13 +57,13 @@ exports.run = async(client, msg, args) => {
                 }).then((channel) => {
                     var embed = new Discord.MessageEmbed()
                         .setColor(client.config.embed.color)
-                        .setDescription(`Your ticket was created ! ${channel}`)
+                        .setDescription(`🎫✅ Your ticket was created ! ${channel}`)
                     msg.channel.send(embed)
 
                     msgContent = msgContent.split("{user}").join(msg.author).split("{support}").join(role).split("{name}").join(msg.author.username);
                     var channelEmbed = new Discord.MessageEmbed()
                         .setColor(client.config.embed.color)
-                        .setTitle(`Ticket System`)
+                        .setTitle(`🎫✅ Ticket System`)
                         .setDescription(msgContent)
                     channel.send(channelEmbed);
                 })
@@ -74,7 +74,7 @@ exports.run = async(client, msg, args) => {
             if(msg.channel.name.startsWith("ticket-")){
                 return msg.channel.delete();
             }else{
-                msg.channel.send(`You can't delete this channel !`, {code : true});
+                msg.channel.send(`🎫⚠️ You can't delete this channel !`, {code : true});
             }
             break;
         
@@ -85,9 +85,9 @@ exports.run = async(client, msg, args) => {
                 if(!mention){
                     if(!isNaN(args[2])){
                         mention = msg.guild.members.get(args[2])
-                        if(!mention) return msg.channel.send("I can't find this user !", {code : true});
+                        if(!mention) return msg.channel.send("🎫⚠️ I can't find this user !", {code : true});
                     }else{
-                        return msg.channel.send("You have to mention or give the id of someone !", {code : true})
+                        return msg.channel.send("🎫⚠️ You have to mention or give the id of someone !", {code : true})
                     }
                 }
 
@@ -97,10 +97,10 @@ exports.run = async(client, msg, args) => {
 
                 var embed = new Discord.MessageEmbed()
                     .setColor(client.config.embed.color)
-                    .setDescription(`${mention} has been added to the ticket channel !`);
+                    .setDescription(`🎫✅ ${mention} has been added to the ticket channel !`);
                 msg.channel.send(embed);
             }else{
-                return msg.channel.send("This command is only for support !", {code : true})
+                return msg.channel.send("🎫⚠️ This command is only for support !", {code : true})
             }
             break;
     }

@@ -18,10 +18,10 @@ exports.run = (client, msg, args) => {
     member.kick(reason).then((member) => {
         var kick_embed = new Discord.MessageEmbed()
             .setTitle("Kick Command")
-            .addField("Member Kicked", `${member} ( ${member.user.tag} )`)
-            .addField("Kicked by :", msg.author.username)
-            .addField("When", moment().format("L"))
-            .addField("Reason :", reason)
+            .addField("👤 Member Kicked", `${member} ( ${member.user.tag} )`)
+            .addField("🔨 Kicked by :", msg.author.username)
+            .addField("🕖 When", moment().format("L"))
+            .addField("💬 Reason :", reason)
             .setColor(client.config.embed.color)
        msg.channel.send(kick_embed).catch(console.error);
     })

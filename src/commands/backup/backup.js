@@ -10,13 +10,13 @@ exports.run = async(client, msg, args) => {
     var result = await backup.getGuildBackup(msg.guild.id)
 
     console.log(result.length)
-    if(result.length >= 5) return msg.channel.send(`You can't have more than 5 backups !`)
+    if(result.length >= 5) return msg.channel.send(`📦📌 You can't have more than 5 backups !`)
 
     backup.create(msg.guild).then((backupID) => {
 
         var embed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`Backup created with sucess ! I sent you the restore code in DM`)
+            .setDescription(`📦✅ Backup created with sucess ! I sent you the restore code in DM`)
 
         msg.channel.send(embed);
 
@@ -24,7 +24,7 @@ exports.run = async(client, msg, args) => {
 
         var pvEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`Backup created with sucess !`)
+            .setDescription(`📦✅ Backup created with sucess !`)
             .addField(`Backup Code`, backupID)
             .addField(`How to restore ?`, `${guildPrefix}restore ${backupID}`)
         msg.author.send(pvEmbed);

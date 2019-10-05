@@ -12,7 +12,7 @@ exports.run = async (client, msg, args) => {
     if(args[1] === "stop"){
         db.delete(msg.guild.id, "autorole");
         var embed = new Discord.MessageEmbed()
-            .setTitle(`AutoRole Updated !`)
+            .setTitle(`✅ AutoRole Updated !`)
             .setDescription("I'll stop adding role to new members !")
             .setColor(client.config.embed.color)
         return msg.channel.send(embed);

@@ -14,10 +14,10 @@ exports.run = async(client, msg, args) => {
             var list = result.join("\n")
             var embed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`There are your backups for this guild : \n\n${list}`)
+            .setDescription(`📦🗃 There are your backups for this guild : \n\n${list}`)
             msg.channel.send(embed)
         }else{
-            msg.channel.send(`This guild hasn't any backup !`, {code : true});
+            msg.channel.send(`📦❌ This guild hasn't any backup !`, {code : true});
         }
     });
 }

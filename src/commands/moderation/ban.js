@@ -19,10 +19,10 @@ exports.run = (client, msg, args) => {
 
         var ban_embed = new Discord.MessageEmbed()
             .setTitle("Ban Command")
-            .addField("Banned member", `${member} ( ${member.user.tag} )`)
-            .addField("By", msg.author.username)
-            .addField("When", moment().format("L"))
-            .addField("Reason", reason)
+            .addField("👤 Banned member", `${member} ( ${member.user.tag} )`)
+            .addField("🔨 By", msg.author.username)
+            .addField("🕖 When", moment().format("L"))
+            .addField("💬 Reason", reason)
             .setColor(client.config.embed.color)
        msg.channel.send(ban_embed).catch(console.error);
     })

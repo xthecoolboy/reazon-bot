@@ -13,8 +13,8 @@ exports.run = (client, msg, args) => {
         let embed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
             .setAuthor('Eval Command', client.user.avatarURL)
-            .addField(':inbox_tray: Input', `\`\`\`js\n${codein}\`\`\``)
-            .addField(':outbox_tray: Output', `\`\`\`js\n${code}\n\`\`\``)
+            .addField('📥 Input', `\`\`\`js\n${codein}\`\`\``)
+            .addField('📤 Output', `\`\`\`js\n${code}\n\`\`\``)
         msg.channel.send(embed)
 
     } catch(e) {

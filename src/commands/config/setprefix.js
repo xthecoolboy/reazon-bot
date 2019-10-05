@@ -18,7 +18,7 @@ exports.run = async (client, msg, args) => {
 
     // Creating and sending discord embed
     var embed = new Discord.MessageEmbed()
-        .setTitle("Prefix Changes")
+        .setTitle("✅ Prefix Changes")
         .setDescription(`Prefix Changed ! New value : [ ${newPrefix} ]`)
         .setColor(client.config.embed.color)
         .setFooter(client.config.embed.footer)

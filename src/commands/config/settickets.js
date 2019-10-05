@@ -13,7 +13,7 @@ exports.run = async(client, msg, args) => {
     if(args[1] === "stop"){
         client.db.delete(msg.guild.id, "ticket");
         var embed = new Discord.MessageEmbed()
-            .setTitle(`Ticket Configuration`)
+            .setTitle(`✅ Ticket Configuration`)
             .setDescription("I'll stop ticket system !")
             .setColor(client.config.embed.color)
         return msg.channel.send(embed);

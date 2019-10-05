@@ -8,8 +8,8 @@ exports.run = async(client, msg, args) => {
 
     var embed = new Discord.MessageEmbed()
     .setColor(client.config.embed.color)
-    .addField('Ping API : ', Math.floor(client.ws.ping) + 'ms')
-    .addField('Ping Bot : ', ` ${newmsg.createdTimestamp - msg.createdTimestamp}` + 'ms')
+    .addField('🔽 Ping API : ', Math.floor(client.ws.ping) + 'ms')
+    .addField('🔽 Ping Bot : ', ` ${newmsg.createdTimestamp - msg.createdTimestamp}` + 'ms')
     .setFooter(client.config.embed.footer)
         
     newmsg.delete()
