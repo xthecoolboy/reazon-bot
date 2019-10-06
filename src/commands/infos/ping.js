@@ -4,7 +4,7 @@ exports.run = async(client, msg, args) => {
 
     msg.delete().catch(() => {});
 
-    var newmsg = await msg.channel.send("Ping ?")
+    var newmsg = await msg.channel.send("⚙️ Ping ?")
 
     var embed = new Discord.MessageEmbed()
     .setColor(client.config.embed.color)

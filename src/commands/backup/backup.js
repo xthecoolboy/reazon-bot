@@ -5,7 +5,7 @@ exports.run = async(client, msg, args) => {
 
     msg.delete().catch(() => {});
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send(`This command require ADMINISTRATOR permission !`);
+    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send(`This command require ADMINISTRATOR permission ! ❌`);
 
     var result = await backup.getGuildBackup(msg.guild.id)
 

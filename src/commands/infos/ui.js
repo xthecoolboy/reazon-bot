@@ -90,26 +90,26 @@ exports.run = (client, msg, args) => {
         .setColor(client.config.embed.color)
         .setThumbnail(member.user.avatarURL())
         .setAuthor("User Info", client.user.avatarURL())
-        .addField("👤 Username et ID", code + member.user.tag + "\n" + member.user.id + block, true)
-        .addField("🗣 Mention", member, true)
+        .addField("•👤 Username et ID", code + member.user.tag + "\n" + member.user.id + block, true)
+        .addField("•🗣 Mention", member, true)
         if(member.nickname){
-            embed.addField("📎 Nickname", code + member.nickname + block, true)
+            embed.addField("•📎 Nickname", code + member.nickname + block, true)
         }else{
-            embed.addField("📎 Nickname", code + "No Nickname" + block, true)
+            embed.addField("•📎 Nickname", code + "No Nickname" + block, true)
         }
-        embed.addField("📂 Account created at", code + moment.utc(member.user.createdAt).format("LL") + block, true)
+        embed.addField("•📂 Account created at", code + moment.utc(member.user.createdAt).format("LL") + block, true)
         if(member.user.bot){
-            embed.addField("🤖 Bot", code + "YES" + block, true)
+            embed.addField("•🤖 Bot", code + "YES" + block, true)
         }else{
-            embed.addField("🤖 Bot", code + "NO" + block, true)
+            embed.addField("•🤖 Bot", code + "NO" + block, true)
         }
         if(roles.length == 0){
-            embed.addField("🚩Roles", code + "No roles" + block, true)
+            embed.addField("•🚩Roles", code + "No roles" + block, true)
         }else{
-            embed.addField("🚩 Roles", code + roles.join("") + block, true)
+            embed.addField("•🚩 Roles", code + roles.join("") + block, true)
         }
-        embed.addField("⏬ Joined the guild at", code + moment.utc(member.joinedAt).format("LL") + block, true)
-        embed.addField("⚜️ Permissions", code + perms.join("") + block)
+        embed.addField("•⏬ Joined the guild at", code + moment.utc(member.joinedAt).format("LL") + block, true)
+        embed.addField("•⚜️ Permissions", code + perms.join("") + block)
         .setFooter(client.config.embed.footer)
 
     msg.channel.send(embed)

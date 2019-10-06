@@ -5,7 +5,7 @@ exports.run = async(client, msg, args) => {
 
     msg.delete()
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission !");
+    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission ! ❌");
 
     var name = args[1];
     var args2 = msg.content.split("\"")
@@ -16,13 +16,13 @@ exports.run = async(client, msg, args) => {
     if(!list.includes(name)){
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`This backup doesn't exist !`);
+            .setDescription(`📦⚠️ This backup doesn't exist !`);
         return msg.channel.send(errorEmbed);
     }
 
     var sureEmbed = new Discord.MessageEmbed()
         .setColor(`#ff000`)
-        .setTitle(`Update Backup ?`)
+        .setTitle(`📦🔄 Update this backup ?`)
         .setDescription(`This will rename your backup.`)
     var collectMsg = await msg.channel.send(sureEmbed);
     collectMsg.react("✅");
@@ -33,7 +33,7 @@ exports.run = async(client, msg, args) => {
             collectMsg.reactions.removeAll();
             var succesEmbed = new Discord.MessageEmbed()
                 .setColor("#ff000")
-                .setTitle("✅ Success")
+                .setTitle("📦✅ Success")
                 .setDescription(`Your backup has been updated !`);
             collectMsg.edit({embed : succesEmbed})
             backup.rename(name, newName);

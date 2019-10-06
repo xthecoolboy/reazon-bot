@@ -100,24 +100,16 @@ exports.run = async(client, msg, args) => {
 
         var finalEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-<<<<<<< HEAD
-            .setAuthor("💻 Help Menu", client.user.avatarURL())
-            .addField(`🔧 Config Commands`, configCmds.join(", "))
-            .addField(`💡 Infos Commands`, infosCmd.join(", "))
-            .addField(`🔨 Moderation Commands`, moderationCmd.join(", "))
-            .addField(`📦 Backup Commands`, backupCmds.join(", "))
-=======
-            .setAuthor("Help Menu", client.user.avatarURL())
-            .addField(`Config Commands`, configCmds.join(", "))
-            .addField(`Infos Commands`, infosCmd.join(", "))
-            .addField(`Moderation Commands`, moderationCmd.join(", "))
-            .addField(`Backup Commands`, backupCmds.join(", "))
-            .addField(`General Commands`, generalCmds.join(", "))
-            .addField("Owner Commands", ownerCmds.join(", "))
->>>>>>> b7dca8f4db1ff9a4c1e7418af9f6ae82c2070194
+            .setAuthor("📩 Help Menu", client.user.avatarURL())
+            .addField(`•🔧 Config Commands`, configCmds.join(", "))
+            .addField(`•💡 Infos Commands`, infosCmd.join(", "))
+            .addField(`•🔨 Moderation Commands`, moderationCmd.join(", "))
+            .addField(`•📦 Backup Commands`, backupCmds.join(", "))
+            .addField(`•🚩 General Commands`, generalCmds.join(", "))
+            .addField("•🔒 Owner Commands", ownerCmds.join(", "))
 
         function sendDM(){
-            msg.channel.send(`Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))
+            msg.channel.send(`📩✅ Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))
             msg.author.send(finalEmbed);
         }
 

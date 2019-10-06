@@ -11,14 +11,14 @@ exports.run = async (client, msg, args) => {
     // New prefix
     var newPrefix = args[1];
     var db = client.db;
-    if(newPrefix.length > 5) return msg.channel.send(`This prefix is not valid ! The new prefix can't be longer than 5 characters`);
+    if(newPrefix.length > 5) return msg.channel.send(`🖋⚠️ This prefix is not valid ! The new prefix can't be longer than 5 characters`);
 
     // Writing database
     db.set(msg.guild.id, newPrefix, "prefix");
 
     // Creating and sending discord embed
     var embed = new Discord.MessageEmbed()
-        .setTitle("✅ Prefix Changes")
+        .setTitle("🖋✅ Prefix Changes")
         .setDescription(`Prefix Changed ! New value : [ ${newPrefix} ]`)
         .setColor(client.config.embed.color)
         .setFooter(client.config.embed.footer)

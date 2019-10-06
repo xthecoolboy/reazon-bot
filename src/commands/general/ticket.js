@@ -7,11 +7,11 @@ exports.run = async(client, msg, args) => {
     if(!client.db.get(msg.guild.id, "ticket")) return msg.channel.send("This system is not enabled on this server !", {code : true});
 
     var role = client.db.get(msg.guild.id, "ticket.role");
-    if(!role) return dropError("support role configuration");
+    if(!role) return dropError("🎫❌ support role configuration");
     var category = client.db.get(msg.guild.id, "ticket.category");
-    if(!category) return dropError("category configuration");
+    if(!category) return dropError("🎫❌ category configuration");
     var msgContent = client.db.get(msg.guild.id, "ticket.msgContent");
-    if(!msgContent) return dropError("msgContent configuration");
+    if(!msgContent) return dropError("🎫❌ msgContent configuration");
 
     role = msg.guild.roles.get(role);
     if(!role) return dropError("cannot find the support role !");
