@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
+const getos = require("getos");
 
 exports.run = async(client, msg, args) => {
 
     msg.delete().catch(() => {});
-
+    
     if(args[1]){
 
         client.commands.forEach((cmd) => {
@@ -43,9 +44,23 @@ exports.run = async(client, msg, args) => {
         var infosCmd = [];
         var moderationCmd = [];
         var backupCmds = [];
+        var ownerCmds = [];
+        var generalCmds = [];
 
-        client.commands.forEach((cmd) => {
-            var dir = cmd.info.dir.split("\\").pop();
+        var System = null;
+        getos((e, os) => {
+            if(e) console.log(e);
+            System = os.os;
+            console.log(os.os)
+        })
+
+        client.commands.forEach((cmd) => { 
+            var dir = "";
+            if(System === "win32"){
+                dir = cmd.info.dir.split("\\").pop();
+            }else{
+                dir = cmd.info.dir.split("/").pop();
+            }
             switch(dir){
                 case "config":
                     configCmds.push(`\`${cmd.info.name}\``);
@@ -58,6 +73,12 @@ exports.run = async(client, msg, args) => {
                     break;
                 case "backup":
                     backupCmds.push(`\`${cmd.info.name}\``);
+                    break;
+                case "general":
+                    generalCmds.push(`\`${cmd.info.name}\``);
+                    break;
+                case "owner":
+                    ownerCmds.push(`\`${cmd.info.name}\``);
                     break;
             }
         })
@@ -79,11 +100,21 @@ exports.run = async(client, msg, args) => {
 
         var finalEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
+<<<<<<< HEAD
             .setAuthor("💻 Help Menu", client.user.avatarURL())
             .addField(`🔧 Config Commands`, configCmds.join(", "))
             .addField(`💡 Infos Commands`, infosCmd.join(", "))
             .addField(`🔨 Moderation Commands`, moderationCmd.join(", "))
             .addField(`📦 Backup Commands`, backupCmds.join(", "))
+=======
+            .setAuthor("Help Menu", client.user.avatarURL())
+            .addField(`Config Commands`, configCmds.join(", "))
+            .addField(`Infos Commands`, infosCmd.join(", "))
+            .addField(`Moderation Commands`, moderationCmd.join(", "))
+            .addField(`Backup Commands`, backupCmds.join(", "))
+            .addField(`General Commands`, generalCmds.join(", "))
+            .addField("Owner Commands", ownerCmds.join(", "))
+>>>>>>> b7dca8f4db1ff9a4c1e7418af9f6ae82c2070194
 
         function sendDM(){
             msg.channel.send(`Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))

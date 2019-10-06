@@ -62,10 +62,11 @@ client.on("ready", () => {
         console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
         console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
         console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guild(s) ]`));
+        console.log(chalk.magenta(`-> Cmds Size :  [ ${client.commands.length} ]`));
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
-        const backup = require("./functions/backup");
+        const backup = require("easy-save-discord");
         backup.setStorageFolder(`${__dirname}/../backups/`);
 
         client.guilds.forEach((guild) => {
@@ -87,6 +88,40 @@ client.on("ready", () => {
     })
 })
 
+client.reloadBot = function(){
+    loadCommands()
+    wait(1500).then(() => {
+        console.clear();
+        console.log(chalk.red(ascii + "\n"));
+        console.log(chalk.green(`Connected to Discord API`));
+        console.log("------------------------------------------------");
+        console.log(chalk.blue(`-> Discord Bot By Jocke and Kaly`));
+        console.log(chalk.magenta(`-> Bot Name :   [ ${client.user.username} ]`));
+        console.log(chalk.magenta(`-> Bot Prefix : [ ${config.prefix} ]`));
+        console.log(chalk.magenta(`-> Bot Stats :  [ ${client.guilds.size} guild(s) ]`));
+        console.log(chalk.magenta(`-> Cmds Size :  [ ${client.commands.length} ]`));
+        console.log("------------------------------------------------");
+        console.log(chalk.green(`=> Client ready`));
+
+        client.guilds.forEach((guild) => {
+            if(!db.has(guild.id)){
+                addPrefix(guild.id)
+            }
+        })
+
+        // Activity System
+        var i = 0;
+        setInterval(() => { 
+
+            let toDisplay = config.presence[parseInt(i, 10)]
+            client.user.setActivity(toDisplay.name, {type: toDisplay.type,url : "https://twitch.tv/REAZON BOT"});
+            if(config.presence[parseInt(i+1, 10)]) i++
+            else i = 0;
+            
+        }, 5000);
+    })
+}
+
 //! EVENTS
 
 client.on("message", async(msg) => {
@@ -102,9 +137,9 @@ client.on("message", async(msg) => {
     // If client mentionned
     if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
 
-        var embed = new Discord.RichEmbed()
+        var embed = new Discord.MessageEmbed()
             .setColor(config.embed.color)
-            .setDescription(`Hey ! Mon prefix sur ce serveur est [ ${guildPrefix} ]\nTu peux faire ${guildPrefix}help pour voir la liste de mes commandes !`)
+            .setDescription(`Hey ! My prefix on this guild is [ ${guildPrefix} ]\nYou can type ${guildPrefix}help to see my commands !`)
         msg.channel.send(embed);
     }
 
