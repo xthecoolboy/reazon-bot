@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
+const getos = require("getos");
 
 exports.run = async(client, msg, args) => {
 
     msg.delete().catch(() => {});
-
+    
     if(args[1]){
 
         client.commands.forEach((cmd) => {
@@ -46,8 +47,20 @@ exports.run = async(client, msg, args) => {
         var ownerCmds = [];
         var generalCmds = [];
 
-        client.commands.forEach((cmd) => {
-            var dir = cmd.info.dir.split("\\").pop();
+        var System = null;
+        getos((e, os) => {
+            if(e) console.log(e);
+            System = os.os;
+            console.log(os.os)
+        })
+
+        client.commands.forEach((cmd) => { 
+            var dir = "";
+            if(System === "win32"){
+                dir = cmd.info.dir.split("\\").pop();
+            }else{
+                dir = cmd.info.dir.split("/").pop();
+            }
             switch(dir){
                 case "config":
                     configCmds.push(`\`${cmd.info.name}\``);

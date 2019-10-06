@@ -66,7 +66,7 @@ client.on("ready", () => {
         console.log("------------------------------------------------");
         console.log(chalk.green(`=> Client ready`));
 
-        const backup = require("./functions/backup");
+        const backup = require("easy-save-discord");
         backup.setStorageFolder(`${__dirname}/../backups/`);
 
         client.guilds.forEach((guild) => {
