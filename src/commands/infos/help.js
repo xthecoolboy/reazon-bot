@@ -51,7 +51,6 @@ exports.run = async(client, msg, args) => {
         getos((e, os) => {
             if(e) console.log(e);
             System = os.os;
-            console.log(os.os)
         })
 
         client.commands.forEach((cmd) => { 
