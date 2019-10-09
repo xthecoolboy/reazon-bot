@@ -11,7 +11,7 @@ module.exports = async(client, msg) => {
     var guildPrefix = client.db.get(msg.guild.id).prefix;
 
     // If client mentionned
-    if(msg.content.startsWith("<@591530190094598144>") || msg.content.startsWith("<@!591530190094598144>")){
+    if(msg.content.startsWith(`<@${client.user.id}>`) || msg.content.startsWith(`<@!${client.user.id}>`)){
 
         var embed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
