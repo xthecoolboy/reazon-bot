@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete();
-
     var role = msg.mentions.roles.first();
     var category = args[2];
     var msgContent = args.slice(3).join(" ");

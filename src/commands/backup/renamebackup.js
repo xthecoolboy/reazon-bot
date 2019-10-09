@@ -3,8 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete();
-
     var name = args[1];
     var args2 = msg.content.split("\"")
     var newName = args2[1];

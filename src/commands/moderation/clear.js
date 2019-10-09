@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     var nbre = args[1];
 
     if(!nbre) return msg.channel.send(`You have to tell the number of message to purge`, {code : true});

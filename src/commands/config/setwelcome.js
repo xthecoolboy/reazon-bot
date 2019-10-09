@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async (client, msg, args) => {
 
-    msg.delete();
-
     var db = client.db;
    
     if(args[1] === "stop"){

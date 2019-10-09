@@ -3,8 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     var backupID = args[1];
 
     if(!backupID){

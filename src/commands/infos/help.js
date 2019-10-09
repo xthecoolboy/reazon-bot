@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const getos = require("getos");
 
 exports.run = async(client, msg, args) => {
-
-    msg.delete().catch(() => {});
     
     if(args[1]){
 

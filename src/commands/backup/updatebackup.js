@@ -3,8 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete()
-
     var name = args.slice(1).join("-");
 
     var list = await backup.listGuildBackup(msg.guild.id);

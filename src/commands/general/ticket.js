@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete();
-
     if(!client.db.get(msg.guild.id, "ticket")) return msg.channel.send("This system is not enabled on this server !", {code : true});
 
     var role = client.db.get(msg.guild.id, "ticket.role");

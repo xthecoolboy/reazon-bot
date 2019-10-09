@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 
 exports.run = (client, msg, args) => {
-    
-    msg.delete()
 
     try{
         let codein = args.slice(1).join(" ");

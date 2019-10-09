@@ -3,8 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     var backups = await backup.listGuildBackup(msg.guild.id)
     var nbre = backups.length;
     var dispo = (client.config.backups.max - nbre)

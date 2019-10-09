@@ -3,8 +3,6 @@ const moment = require('moment')
 
 exports.run = (client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     var member = msg.mentions.members.first();
     var reason = args.slice(2).join(" ");
 

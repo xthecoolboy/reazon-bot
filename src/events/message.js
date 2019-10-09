@@ -73,6 +73,7 @@ module.exports = async(client, msg) => {
                     .setDescription(`${client.config.emojis.error} You do not have the necessary permissions (\`${command.info.perms.join(", ")}\`)`)
                 msg.channel.send(errorEmbed);
             }else{
+                msg.delete().catch(() => {});
                 command.run(client, msg, args);
             }
         }

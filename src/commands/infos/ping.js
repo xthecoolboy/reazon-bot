@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     var newmsg = await msg.channel.send("Ping ?")
 
     var embed = new Discord.MessageEmbed()
