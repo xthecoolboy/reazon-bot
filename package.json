@@ -1,6 +1,6 @@
 {
   "name": "discord-bot",
-  "version": "0.1.0",
+  "version": "préV1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
     "getos": "^3.1.1",
     "moment": "^2.24.0",
     "os": "^0.1.1",
-    "randomstring": "^1.1.5"
+    "weather-js": "¨2.0.0"
   }
 }
