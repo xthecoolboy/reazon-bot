@@ -10,7 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/jockaly/discord-bot.git"
   },
-  "author": "JockeRider199 & Kaly",
+  "author": "JockeRider199 & Kaly & Max",
+  "authorsID" : ["489495461472894996", "245977535408504833", "415968332093718539"],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jockaly/discord-bot/issues"
