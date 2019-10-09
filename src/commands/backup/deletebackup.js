@@ -41,7 +41,7 @@ exports.run = async(client, msg, args) => {
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
             .setDescription(`This backup doesn't exist !`);
-        msg.channel.Send(errorEmbed);
+        msg.channel.send(errorEmbed);
     })
 }
 
