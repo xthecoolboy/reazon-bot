@@ -12,6 +12,11 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "showdb",
     alias : [],
-    perm : "owner",
-    dir : __dirname
+    perms : [],
+    dir : __dirname,
+    help : {
+        desc : "Show db keys value for this guild",
+        usage : ["[prefix]showdb"],
+        ex : "/"
+    }
 }

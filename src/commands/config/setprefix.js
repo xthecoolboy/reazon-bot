@@ -29,7 +29,7 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "setprefix",
     alias : [],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Change the bot's prefix for this server",

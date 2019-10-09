@@ -19,7 +19,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "ping",
     alias : [],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Show the ping of the bot",

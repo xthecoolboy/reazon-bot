@@ -3,8 +3,6 @@ const Discord = require("discord.js");
 exports.run = async (client, msg, args) => {
 
     var weather = require('weather-js');
- 
-    
      
     weather.find({search: args[1], degreeType: 'C'}, function(err, result) { 
         if (err) msg.channel.send('Plz use weather <city> ');
@@ -41,18 +39,14 @@ exports.run = async (client, msg, args) => {
     });
 }
 
-
-
-
-
-    exports.info = {
-        name : "weather",
-        alias : ["meteo", "wt"],
-        perm : null,
-        dir : __dirname,
-        help : {
-            desc : "see weather",
-            usage : "[prefix]weather (city)",
-            ex : "[prefix]weather Paris"  
-        }
+exports.info = {
+     name : "weather",
+    alias : ["meteo", "wt"],
+    perms : [],
+    dir : __dirname,
+    help : {
+        desc : "see weather",
+        usage : "[prefix]weather (city)",
+        ex : "[prefix]weather Paris"  
     }
+}

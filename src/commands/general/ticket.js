@@ -109,7 +109,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "ticket",
     alias : [],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Open a ticket, if system enabled\n\nIf the command is ticket add you must mention or give the id of someone",

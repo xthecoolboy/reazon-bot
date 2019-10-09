@@ -4,8 +4,6 @@ exports.run = async (client, msg, args) => {
 
     msg.delete();
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission !", {code : true});
-
     var db = client.db;
    
     if(args[1] === "stop"){
@@ -38,7 +36,7 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "setwelcome",
     alias : [],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Configure the welcome system\n\nParameters for welcome message : \n{user} => mention the new member\n{guild} => The server name\n{count} => The member count",

@@ -5,8 +5,6 @@ exports.run = async(client, msg, args) => {
 
     msg.delete().catch(() => {});
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission !");
-
     backup.listGuildBackup(msg.guild.id).then(async(results) => {
         
         if(results.length > 0){
@@ -28,7 +26,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "backuplist",
     alias : ["backupslist"],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "returns a list of guild's backup",

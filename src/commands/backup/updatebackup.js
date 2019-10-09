@@ -5,8 +5,6 @@ exports.run = async(client, msg, args) => {
 
     msg.delete()
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission !");
-
     var name = args.slice(1).join("-");
 
     var list = await backup.listGuildBackup(msg.guild.id);
@@ -44,7 +42,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "updatebackup",
     alias : [],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Update a backup",

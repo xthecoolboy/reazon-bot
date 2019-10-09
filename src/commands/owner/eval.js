@@ -23,7 +23,7 @@ exports.run = (client, msg, args) => {
 }  
 exports.info = {
     name : "eval",
-    perm : "owner",
+    perms : [],
     alias : [],
     dir : __dirname,
     help : {

@@ -4,8 +4,6 @@ exports.run = async(client, msg, args) => {
 
     msg.delete();
 
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission !", {code : true});
-
     var role = msg.mentions.roles.first();
     var category = args[2];
     var msgContent = args.slice(3).join(" ");
@@ -54,7 +52,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "setticket",
     alias : [],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Configure the ticket system\n\nFor ticket message, there are parameters :\n{user} => mention the user\n{support} => mention the support role\n{name} => returns the user's username\n\n**To stop this function run command `setticket stop`**",

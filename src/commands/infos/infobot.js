@@ -22,7 +22,7 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name : "botinfo",
     alias : ["bot-info", "info-bot", "infobot"],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Give infos about me :D",

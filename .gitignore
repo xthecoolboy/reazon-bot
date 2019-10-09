@@ -6,3 +6,6 @@ data/
 Errors/
 .vscode
 backups/
+
+# Provisoire
+src/commands/infos/server.js

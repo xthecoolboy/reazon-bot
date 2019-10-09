@@ -121,7 +121,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "help",
     alias : ["commands", "commandes", "command", "commande"],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Show a menu with bot's commands",
