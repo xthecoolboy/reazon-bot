@@ -11,7 +11,11 @@
     "url": "git+https://github.com/jockaly/discord-bot.git"
   },
   "author": "JockeRider199 & Kaly & Max",
-  "authorsID" : ["489495461472894996", "245977535408504833", "415968332093718539"],
+  "authorsID": [
+    "489495461472894996",
+    "245977535408504833",
+    "415968332093718539"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jockaly/discord-bot/issues"
@@ -26,6 +30,6 @@
     "getos": "^3.1.1",
     "moment": "^2.24.0",
     "os": "^0.1.1",
-    "weather-js": "¨2.0.0"
+    "weather-js": "^2.0.0"
   }
 }

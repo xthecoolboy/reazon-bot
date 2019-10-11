@@ -75,6 +75,13 @@ module.exports = async(client, msg) => {
             }else{
                 msg.delete().catch(() => {});
                 command.run(client, msg, args);
+                if(Error){
+                    var commandError = new Discord.MessageEmbed()
+                        .setDescription(":warning: An error occured ! Please try again later")
+                        .setColor(client.config.embed.color)
+                        .setFooter("My devs are warned of this incident")
+                    msg.channel.send(commandError);
+                }
             }
         }
     });
