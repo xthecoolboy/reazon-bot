@@ -3,10 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete()
-
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission ! ❌");
-
     var name = args[1];
     var args2 = msg.content.split("\"")
     var newName = args2[1];
@@ -44,7 +40,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "renamebackup",
     alias : [],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Rename a backup",

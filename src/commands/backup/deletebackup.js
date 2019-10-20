@@ -3,10 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send("This command require ADMINISTRATOR permission ! ❌", {code : true});
-
     var backupID = args[1];
 
     if(!backupID){
@@ -47,7 +43,7 @@ exports.run = async(client, msg, args) => {
 
 exports.info = {
     name : "deletebackup",
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     alias : [],
     dir : __dirname,
     help : {

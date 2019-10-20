@@ -3,10 +3,6 @@ const moment = require('moment')
 
 exports.run = (client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
-    if(!msg.member.permissions.has("BAN_MEMBERS")) return msg.channel.send(`This command require BAN_MEMBERS permissions`,  {code : true})
-
     var member = msg.mentions.members.first();
     var reason = args.slice(2).join(" ");
 
@@ -31,7 +27,7 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name: "ban",
     alias : [],
-    perm : null,
+    perms : ["BAN_MEMBERS"],
     dir : __dirname,
     help : {
         desc : "Ban a member",

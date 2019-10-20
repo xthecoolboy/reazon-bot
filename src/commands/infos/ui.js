@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const moment = require("moment");
 
 exports.run = (client, msg, args) => {
-   
-    msg.delete().catch(() => {});
 
     let member = msg.mentions.members.first();
     var roles = [];
@@ -118,7 +116,7 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name : "userinfo",
     alias : ["ui"],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Show informations about mentionned member",

@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async (client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
     if(msg.author.id !== msg.guild.ownerID){
         return msg.channel.send("This command is reserved to the guild's owner !", {code : true});
     }
@@ -29,7 +27,7 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "setprefix",
     alias : [],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Change the bot's prefix for this server",

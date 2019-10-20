@@ -2,10 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
-    if(!msg.member.permissions.has("MANAGE_MESSAGES")) return msg.channel.send(`This command require MANAGE_MESSAGES !`);
-
     var nbre = args[1];
 
     if(!nbre) return msg.channel.send(`🗑⚠️ You have to tell the number of message to purge`, {code : true});
@@ -22,7 +18,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "clear",
     alias : ["purge"],
-    perm : null,
+    perms : ["MANAGE_MESSAGES"],
     dir : __dirname,
     help : {
         desc : "Purge x messages of the channel",

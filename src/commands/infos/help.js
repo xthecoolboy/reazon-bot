@@ -2,8 +2,6 @@ const Discord = require("discord.js");
 const getos = require("getos");
 
 exports.run = async(client, msg, args) => {
-
-    msg.delete().catch(() => {});
     
     if(args[1]){
 
@@ -51,7 +49,6 @@ exports.run = async(client, msg, args) => {
         getos((e, os) => {
             if(e) console.log(e);
             System = os.os;
-            console.log(os.os)
         })
 
         client.commands.forEach((cmd) => { 
@@ -122,7 +119,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "help",
     alias : ["commands", "commandes", "command", "commande"],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Show a menu with bot's commands",

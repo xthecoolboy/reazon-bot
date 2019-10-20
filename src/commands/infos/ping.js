@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 
 exports.run = async(client, msg, args) => {
-
-    msg.delete().catch(() => {});
-
+  
     var newmsg = await msg.channel.send("⚙️ Ping ?")
 
     var embed = new Discord.MessageEmbed()
@@ -19,7 +17,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "ping",
     alias : [],
-    perm : null,
+    perms : [],
     dir : __dirname,
     help : {
         desc : "Show the ping of the bot",

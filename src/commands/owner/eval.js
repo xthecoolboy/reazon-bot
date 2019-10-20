@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 
 exports.run = (client, msg, args) => {
-    
-    msg.delete()
 
     try{
         let codein = args.slice(1).join(" ");
@@ -23,7 +21,7 @@ exports.run = (client, msg, args) => {
 }  
 exports.info = {
     name : "eval",
-    perm : "owner",
+    perms : [],
     alias : [],
     dir : __dirname,
     help : {

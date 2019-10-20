@@ -2,10 +2,6 @@ const Discord = require("discord.js");
 
 exports.run = async (client, msg, args) => {
 
-    if(msg.author.id !== msg.guild.ownerID){
-        return msg.channel.send("This command is reserved to the guild's owner !", {code : true});
-    }
-
     var db = client.db;
     var role = msg.mentions.roles.first();
 
@@ -42,7 +38,7 @@ exports.run = async (client, msg, args) => {
 exports.info = {
     name : "autorole",
     alias : [],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Change the role given when new members join",

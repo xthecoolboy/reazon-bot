@@ -3,10 +3,6 @@ backup = require("easy-save-discord");
 
 exports.run = async(client, msg, args) => {
 
-    msg.delete().catch(() => {});
-
-    if(!msg.member.permissions.has("ADMINISTRATOR")) return msg.channel.send(`This command require ADMINISTRATOR permission !`);
-
     var backups = await backup.listGuildBackup(msg.guild.id)
     var nbre = backups.length;
     var dispo = (client.config.backups.max - nbre)
@@ -44,7 +40,7 @@ exports.run = async(client, msg, args) => {
 exports.info = {
     name : "createbackup",
     alias : ["save"],
-    perm : null,
+    perms : ["ADMINISTRATOR"],
     dir : __dirname,
     help : {
         desc : "Create a backup of the server",
