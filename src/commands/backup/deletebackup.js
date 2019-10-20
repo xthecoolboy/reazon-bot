@@ -8,14 +8,14 @@ exports.run = async(client, msg, args) => {
     if(!backupID){
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`parameter backupID is invalid !`)
+            .setDescription(`📦 parameter backupID is invalid !`)
         msg.channel.send(errorEmbed)
     }
 
     backup.fetch(backupID).then(async() => {
         var sureEmbed = new Discord.MessageEmbed()
             .setColor("#ff0000")
-            .setTitle(`Delete this backup ?`)
+            .setTitle(`📦🗑 Delete this backup ?`)
             .setDescription(`\`${backupID}\` will be erased. Are you sure ?`)
         var collectMsg = await msg.channel.send(sureEmbed);
         collectMsg.react("✅");
@@ -27,7 +27,7 @@ exports.run = async(client, msg, args) => {
                 collectMsg.reactions.removeAll();
                 var succesEmbed = new Discord.MessageEmbed()
                     .setColor("#ff000")
-                    .setTitle("✅ Success")
+                    .setTitle("📦✅ Success")
                     .setDescription(`Your backup has been deleted !`);
                 collectMsg.edit({embed : succesEmbed})
                 backup.delete(backupID);
@@ -36,8 +36,8 @@ exports.run = async(client, msg, args) => {
     }).catch(() => {
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`This backup doesn't exist !`);
-        msg.channel.send(errorEmbed);
+            .setDescription(`📦⚠️ This backup doesn't exist !`);
+        msg.channel.Send(errorEmbed);
     })
 }
 

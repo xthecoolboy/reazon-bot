@@ -9,29 +9,29 @@ exports.run = async(client, msg, args) => {
     if(args[1] === "stop"){
         client.db.delete(msg.guild.id, "ticket");
         var embed = new Discord.MessageEmbed()
-            .setTitle(`Ticket Configuration`)
+            .setTitle(`🎫🔧 Ticket Configuration`)
             .setDescription("I'll stop ticket system !")
             .setColor(client.config.embed.color)
         return msg.channel.send(embed);
     }
 
-    if(!role) return msg.channel.send(`Parameter role is not declared ! Please mention a role !`, {code : true});
-    if(!category) return msg.channel.send(`Parameter category is not declared !`, {code : true});
+    if(!role) return msg.channel.send(`🎫⚠️ Parameter role is not declared ! Please mention a role !`, {code : true});
+    if(!category) return msg.channel.send(`🎫⚠️ Parameter category is not declared !`, {code : true});
     if(category){
         if(isNaN(category)){
             category = msg.guild.channels.find((c) => c.type === "category" && c.name.toLowerCase() === args[2].toLowerCase());
             if(!category){
-                return msg.channel.send(`I can't find this category !`);
+                return msg.channel.send(`🎫❌ I can't find this category !`);
             }
         }else{
             category = msg.guild.channels.find((c) => c.type === "category" && c.id === args[2]);
             if(!category){
-                return msg.channel.send(`I can't find this category !`);
+                return msg.channel.send(`🎫❌ I can't find this category !`);
             }
         }
     }
-    if(!msgContent) return msg.channel.send(`Parameter msgContent is not declared !`, {code : true});
-    if(msgContent.length > 500) return msg.channel.send("Parameter msgContent is not valid ! The result can't be longer than 500 characters !", {code : true});
+    if(!msgContent) return msg.channel.send(`🎫⚠️ Parameter msgContent is not declared !`, {code : true});
+    if(msgContent.length > 500) return msg.channel.send("🎫⚠️ Parameter msgContent is not valid ! The result can't be longer than 500 characters !", {code : true});
 
     client.db.set(msg.guild.id, {
         role : role.id,
@@ -41,7 +41,7 @@ exports.run = async(client, msg, args) => {
 
     var embed = new Discord.MessageEmbed()
         .setColor(client.config.embed.color)
-        .setTitle("Ticket Configuration")
+        .setTitle("🎫🔧 Ticket Configuration")
         .setDescription(`Ticket System updated !\n\nTicket Category : ${category.name}\nTicket Msg : \`${msgContent}\`\nSupport Role : ${role}`);
     msg.channel.send(embed);
 

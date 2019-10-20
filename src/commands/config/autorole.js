@@ -8,7 +8,7 @@ exports.run = async (client, msg, args) => {
     if(args[1] === "stop"){
         db.delete(msg.guild.id, "autorole");
         var embed = new Discord.MessageEmbed()
-            .setTitle(`AutoRole Updated !`)
+            .setTitle(`🔄✅ AutoRole Updated !`)
             .setDescription("I'll stop adding role to new members !")
             .setColor(client.config.embed.color)
         return msg.channel.send(embed);
@@ -18,7 +18,7 @@ exports.run = async (client, msg, args) => {
         role = args.slice(1).join(" ")
         role = msg.guild.roles.find((r) => r.name === role);
         if(!role){
-            return msg.channel.send(`Parameter role is not valid !`, {code : true});
+            return msg.channel.send(`⚠️ Parameter role is not valid !`, {code : true});
         }
     }
 
@@ -26,7 +26,7 @@ exports.run = async (client, msg, args) => {
 
     var compare = msg.guild.me.roles.highest.comparePositionTo(role);
     var embed = new Discord.MessageEmbed()
-        .setTitle(`AutoRole Updated !`)
+        .setTitle(`🔄✅ AutoRole Updated !`)
         .setDescription(`New value : ${role}`)
         .setColor(client.config.embed.color)
         if(compare <= 0){

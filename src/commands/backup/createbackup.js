@@ -10,7 +10,7 @@ exports.run = async(client, msg, args) => {
     if(dispo > 0){
         var sureEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setTitle(`Create a backup ?`)
+            .setTitle(`📦📂 Create a backup ?`)
             .setDescription(`You have ${dispo} slots available.`)
         
         var collectMsg = await msg.channel.send(sureEmbed);
@@ -23,7 +23,7 @@ exports.run = async(client, msg, args) => {
                 collectMsg.reactions.removeAll();
                 var succesEmbed = new Discord.MessageEmbed()
                     .setColor("#ff000")
-                    .setTitle("✅ Success")
+                    .setTitle("📦✅ Success")
                     .setDescription(`Your backup has been created !`);
                 collectMsg.edit({embed : succesEmbed})
                 backup.create(msg.guild);
@@ -32,7 +32,7 @@ exports.run = async(client, msg, args) => {
     }else{
         var errorEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`You have no more slots`)
+            .setDescription(`📦❌ You have no more slots`)
         msg.channel.send(errorEmbed)
     }
 }

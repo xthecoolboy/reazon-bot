@@ -14,7 +14,7 @@ exports.run = async(client, msg, args) => {
                 var guildPrefix = client.db.get(msg.guild.id).prefix;
                 var embed = new Discord.MessageEmbed()
                     .setColor(client.config.embed.color)
-                    .setTitle(`Help for command : ${args[1]}`)
+                    .setTitle(`💡 Help for command : ${args[1]}`)
                     .setDescription(cmd.info.help.desc)
                     if(cmd.info.alias.length > 0){
                         embed.addField(`Alias`, "```\n" + cmd.info.alias.join(", ") + "\n```")
@@ -31,7 +31,7 @@ exports.run = async(client, msg, args) => {
 
         var whereEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setDescription(`Where do you want the menu ?`)
+            .setDescription(`💡 Where do you want the menu ?`)
             .addField(`:inbox_tray:`, `Here`, true)
             .addField(`:lock:`, `In DM`, true)
         var reactMsg = await msg.channel.send(whereEmbed);
@@ -97,16 +97,16 @@ exports.run = async(client, msg, args) => {
 
         var finalEmbed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
-            .setAuthor("Help Menu", client.user.avatarURL())
-            .addField(`Config Commands`, configCmds.join(", "))
-            .addField(`Infos Commands`, infosCmd.join(", "))
-            .addField(`Moderation Commands`, moderationCmd.join(", "))
-            .addField(`Backup Commands`, backupCmds.join(", "))
-            .addField(`General Commands`, generalCmds.join(", "))
-            .addField("Owner Commands", ownerCmds.join(", "))
+            .setAuthor("📩 Help Menu", client.user.avatarURL())
+            .addField(`•🔧 Config Commands`, configCmds.join(", "))
+            .addField(`•💡 Infos Commands`, infosCmd.join(", "))
+            .addField(`•🔨 Moderation Commands`, moderationCmd.join(", "))
+            .addField(`•📦 Backup Commands`, backupCmds.join(", "))
+            .addField(`•🚩 General Commands`, generalCmds.join(", "))
+            .addField("•🔒 Owner Commands", ownerCmds.join(", "))
 
         function sendDM(){
-            msg.channel.send(`Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))
+            msg.channel.send(`📩✅ Menu sent :white_check_mark:`).then((sent) => sent.delete({timeout : 3000}))
             msg.author.send(finalEmbed);
         }
 
