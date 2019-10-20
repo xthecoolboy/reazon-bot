@@ -14,10 +14,19 @@ module.exports = async(client, msg) => {
     // If client mentionned
     if(msg.content.startsWith(`<@${client.user.id}>`) || msg.content.startsWith(`<@!${client.user.id}>`)){
 
+        var args = msg.content.split(" ");
+
+        if(args[1] === "reset"){
+            client.db.set(msg.guild.id, client.config.prefix, "prefix");
+            var embed = new Discord.MessageEmbed()
+                .setColor(client.config.embed.color)
+                .setDescription(`My prefix has been reseted ! Prefix value : ${client.config.prefix}`)
+            return msg.channel.send(embed);
+        }
         var embed = new Discord.MessageEmbed()
             .setColor(client.config.embed.color)
             .setDescription(`Hey ! My prefix on this guild is [ ${guildPrefix} ]\nYou can type ${guildPrefix}help to see my commands !`)
-        msg.channel.send(embed);
+        return msg.channel.send(embed);
     }
 
     if(!msg.content.startsWith(guildPrefix)) return;
