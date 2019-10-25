@@ -3,17 +3,6 @@ const moment = require('moment')
 
 exports.run = (client, msg, args) => {
 
-    msg.delete();
-
-    if(!msg.member.permissions.has("BAN_MEMBERS")) {
-        
-        var error_perms = new Discord.MessageEmbed()
-            .setTitle("⚠️ Error !")
-            .setDescription("This command required the permission BAN_MEMBERS !")
-            .setColor(client.config.embed.color)
-        msg.channel.send(error_perms).catch(console.error);
-    }
-
     var member = msg.mentions.members.first();
     var reason = args.slice(2).join(" ");
 
@@ -29,7 +18,7 @@ exports.run = (client, msg, args) => {
         reason = "No reason given"
     }
 
-    member.ban(reason).then((member) => {
+    member.ban({days : 7, reason : reason}).then((member) => {
 
         var ban_embed = new Discord.MessageEmbed()
             .setTitle("Ban Command")
@@ -45,7 +34,7 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name: "ban",
     alias : [],
-    perm : null,
+    perms : ["BAN_MEMBERS"],
     dir : __dirname,
     help : {
         desc : "Ban a member",
