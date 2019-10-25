@@ -108,7 +108,6 @@ exports.run = (client, msg, args) => {
         }
         embed.addField("•⏬ Joined the guild at", code + moment.utc(member.joinedAt).format("LL") + block, true)
         embed.addField("•⚜️ Permissions", code + perms.join("") + block)
-        .setFooter(client.config.embed.footer)
 
     msg.channel.send(embed)
 }
