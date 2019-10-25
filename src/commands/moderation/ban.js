@@ -6,21 +6,28 @@ exports.run = (client, msg, args) => {
     var member = msg.mentions.members.first();
     var reason = args.slice(2).join(" ");
 
-    if (!member) return msg.channel.send(`You have to mention a member !`, {code : true});
+    if (!member) {
+
+        var error_mention = new Discord.MessageEmbed()
+            .setTitle("⚠️ Error !")
+            .setDescription("You have to mention a member !")
+            .setColor(client.config.embed.color)
+        msg.channel.send(error_mention).catch(console.error);
+    }
     if(!reason){
         reason = "No reason given"
     }
 
-    member.ban({reason : reason}).then((member) => {
+    member.ban({days : 7, reason : reason}).then((member) => {
 
         var ban_embed = new Discord.MessageEmbed()
             .setTitle("Ban Command")
-            .addField("👤 Banned member", `${member} ( ${member.user.tag} )`)
+            .addField("👤 Member Banned", `${member} ( ${member.user.tag} )`)
             .addField("🔨 By", msg.author.username)
             .addField("🕖 When", moment().format("L"))
             .addField("💬 Reason", reason)
             .setColor(client.config.embed.color)
-       msg.channel.send(ban_embed).catch(console.error);
+        msg.channel.send(ban_embed).catch(console.error);
     })
 }
 
