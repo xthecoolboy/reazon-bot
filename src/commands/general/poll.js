@@ -14,12 +14,12 @@ exports.run = async (client, msg, args) => {
     }
 
     var embed = new Discord.MessageEmbed()
-        .setColor("✅ Poll created !")
-        .setDescription("**Content :**" + poll_content)
+        .setTitle("📊 New Poll  !")
+        .setDescription("**Content : **" + poll_content)
         .setColor(client.config.embed.color)
-    msg.channel.send(embed);
-    msg.react("👎🏻")
-    msg.react("👍🏻")
+    var sent = await msg.channel.send(embed);
+    await sent.react("👍🏻")
+    await sent.react("👎🏻")
 }
 
 exports.info = {
@@ -30,6 +30,6 @@ exports.info = {
     help: {
         desc : "Create à poll with your content",
         usage : "[prefix]poll [content]",
-        ex : "[prefix]poll you love pineapples ?"
+        ex : "[prefix]poll do you love pineapples ?"
     }
 }
