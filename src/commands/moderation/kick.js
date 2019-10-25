@@ -3,17 +3,6 @@ const moment = require('moment')
 
 exports.run = (client, msg, args) => {
 
-    msg.delete();
-
-    if(!msg.member.permissions.has("KICK_MEMBERS")) {
-        
-        var error_perms = new Discord.MessageEmbed()
-            .setTitle("⚠️ Error !")
-            .setDescription("This command required the permission KICK_MEMBERS !")
-            .setColor(client.config.embed.color)
-        msg.channel.send(error_perms).catch(console.error);
-    }
-
     var member = msg.mentions.members.first();
     var reason = args.slice(2).join(" ");
 
@@ -45,7 +34,7 @@ exports.run = (client, msg, args) => {
 exports.info = {
     name: "kick",
     alias : [],
-    perm : null,
+    perms : ["KICK_MEMBERS"],
     dir : __dirname,
     help : {
         desc : "Kick a member",
