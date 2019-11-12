@@ -91,7 +91,9 @@ client.on("ready", () => {
             if(!db.has(guild.id)){
                 addPrefix(guild.id)
             }
-        })
+        });
+
+        require("./utils/checkAutoBackup").init(client);
 
         // Activity System
         var i = 0;
