@@ -1,12 +1,12 @@
 module.exports = {
 
     token : "",
-    prefix : "",
-    ownerID : [""],
+    prefix : "*",
+    ownerID : ["376384142599782410"],
 
     embed : {
-        color : "",
-        footer : ""
+        color : "green",
+        footer : "lol"
     },
 
     presence : [
