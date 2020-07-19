@@ -59,7 +59,7 @@ function loadEvents(){
 }
 
 //! LOGIN
-client.login(config.token);
+client.login(process.env.BOT_TOKEN);
 
 client.on("ready", () => {
 
